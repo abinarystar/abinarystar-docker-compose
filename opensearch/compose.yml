@@ -1,0 +1,10 @@
+services:
+  opensearch:
+    image: bitnami/opensearch:latest
+    ports:
+      - 29200:9200
+    volumes:
+      - opensearch_data:/bitnami/opensearch/data
+
+volumes:
+  opensearch_data:

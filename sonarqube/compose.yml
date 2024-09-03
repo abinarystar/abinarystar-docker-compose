@@ -1,0 +1,25 @@
+services:
+  postgresql:
+    image: bitnami/postgresql:latest
+    volumes:
+      - postgresql_data:/bitnami/postgresql
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=bn_sonarqube
+      - POSTGRESQL_DATABASE=bitnami_sonarqube
+  sonarqube:
+    depends_on:
+      - postgresql
+    image: bitnami/sonarqube:latest
+    ports:
+      - 9000:9000
+    volumes:
+      - sonarqube_data:/bitnami/sonarqube
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - SONARQUBE_USERNAME=admin
+      - SONARQUBE_PASSWORD=sonarqube
+
+volumes:
+  postgresql_data:
+  sonarqube_data:
